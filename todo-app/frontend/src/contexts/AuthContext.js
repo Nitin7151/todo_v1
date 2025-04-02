@@ -1,0 +1,1 @@
+Context API for managing authentication state (if applicable)
