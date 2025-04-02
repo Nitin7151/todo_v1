@@ -1,0 +1,1 @@
+Main application setup (middleware, routes, etc.)
