@@ -1,0 +1,1 @@
+Context API for managing task state globally
