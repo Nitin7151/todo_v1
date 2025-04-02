@@ -1,10 +1,35 @@
 const Task = require('../models/taskModel');
 const asyncHandler = require('express-async-handler');
+const mongoose = require('mongoose');
 
 // Create a new task
 const createTask = asyncHandler(async (req, res) => {
-  // Implementation for creating a task
-  res.status(201).json({ message: 'Create Task' });
+  const { title, description } = req.body;
+
+  if (!title || !description) {
+    res.status(400);
+    throw new Error('Please provide title and description');
+  }
+
+  try {
+    const task = await Task.create({
+      title,
+      description,
+      user: req.user.id,
+    });
+
+    res.status(201).json({
+      message: 'Task created',
+      task: {
+        _id: task.id,
+        title: task.title,
+        description: task.description,
+      },
+    });
+  } catch (error) {
+    console.error('Error creating task:', error);
+    res.status(500).json({ message: 'Failed to create task' });
+  }
 });
 
 // Get a task by ID
