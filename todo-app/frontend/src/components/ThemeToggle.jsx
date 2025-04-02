@@ -1,0 +1,1 @@
+Component for switching between themes (light/dark)
