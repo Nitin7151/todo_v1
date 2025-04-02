@@ -1,0 +1,1 @@
+Spinner or loading component
